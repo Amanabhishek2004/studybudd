@@ -1,0 +1,134 @@
+
+{% if page == "verify" %}
+
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Email Verification</title>
+ </head>
+ <body>
+  <p>Thank you for signing up! Please click the button below to verify your email address:</p>
+  
+  <p>If the button above does not work, you can also copy and paste the following link into your browser:</p>
+  <p><a href="https://www.example.com/verify_email/{{token}}">click here</a></p>
+  
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+         <td align="center">
+          <table border="0" cellspacing="0" cellpadding="0">
+           <tr>
+            <td bgcolor="#4CAF50" style="padding: 10px 20px; border-radius: 5px;">
+             <a href="https://www.example.com/verify_email" target="_blank" style="font-size: 16px; font-weight: bold; color: #ffffff; text-decoration: none; display: inline-block;">
+              Verify Email
+             </a>
+                        </td>
+                       </tr>
+                      </table>
+                     </td>
+                    </tr>
+                   </table>
+                   
+                   <p>Thank you for using our service!</p>
+                  </body>
+                  </html>
+{% else %}
+
+                  <!DOCTYPE html>
+                  <html lang="en">
+                  <head>
+                      <meta charset="UTF-8">
+                      <title>Invoice</title>
+                      <style>
+                          body {
+                              font-family: Arial, sans-serif;
+                          }
+                          .invoice {
+                              max-width: 600px;
+                              margin: 0 auto;
+                              padding: 20px;
+                              border: 1px solid #ccc;
+                              border-radius: 5px;
+                          }
+                          .invoice-header {
+                              text-align: center;
+                          }
+                          .invoice-header h1 {
+                              font-size: 24px;
+                              color: #333;
+                          }
+                          .invoice-details {
+                              margin-top: 20px;
+                          }
+                          .invoice-details p {
+                              margin: 5px 0;
+                          }
+                          .invoice-table {
+                              width: 100%;
+                              border-collapse: collapse;
+                              margin-top: 20px;
+                          }
+                          .invoice-table th,
+                          .invoice-table td {
+                              border: 1px solid #ccc;
+                              padding: 8px;
+                              text-align: left;
+                          }
+                          .invoice-total {
+                              margin-top: 20px;
+                              text-align: right;
+                          }
+                      </style>
+                  </head>
+                  <body>
+                      <div class="invoice">
+                          <div class="invoice-header">
+                              <h1>Invoice</h1>
+                          </div>
+                          <div class="invoice-details">
+                              <p><strong>Invoice Number:</strong> INV123456</p>
+                              <p><strong>Date:</strong> October 15, 2023</p>
+                              <p><strong>Due Date:</strong> November 15, 2023</p>
+                          </div>
+                          <table class="invoice-table">
+                              <thead>
+                                  <tr>
+                                      <th>Description</th>
+                                      <th>Quantity</th>
+                                      <th>Unit Price</th>
+                                      <th>Total</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>Product A</td>
+                                      <td>2</td>
+                                      <td>$50.00</td>
+                                      <td>$100.00</td>
+                                  </tr>
+                                  <tr>
+                                      <td>Product B</td>
+                                      <td>3</td>
+                                      <td>$30.00</td>
+                                      <td>$90.00</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                          <div class="invoice-total">
+                              <p><strong>Total Amount:</strong> $190.00</p>
+                          </div>
+                      </div>
+                  </body>
+                  </html>
+                  
+
+
+
+
+
+
+
+
+
+
+ {% endif %}
