@@ -5,7 +5,7 @@ class registration_form(forms.Form):
     password = forms.CharField(label='Password', max_length=25)
     confirm_password = forms.CharField(label='Confirm Password', max_length=25)
     username = forms.CharField(label='Username', max_length=25)
-    referal_code = forms.CharField(max_length=12)
+    email = forms.EmailField( label="Email" , required=True , max_length=30)
 
     def clean(self):
         cleaned_data = super().clean()

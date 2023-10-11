@@ -19,8 +19,8 @@ def verify_email(email, token):
     # Add any other logic or response here
 
 
-def send_invoice_email(user,request):
-    
+def send_invoice_email(user, email):
+
     purchased_item = Customer.objects.filter(
         name=user).order_by("-created").first()
     value = purchased_item.Product_purchased.name
@@ -30,5 +30,6 @@ def send_invoice_email(user,request):
     recipient_list = [user.email]  # Replace with the recipient's email address
     send_mail(subject, settings.EMAIL_HOST_USER,
               recipient_list, html_message=html_message)
+
 
 

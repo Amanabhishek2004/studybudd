@@ -30,9 +30,9 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            
+            return redirect("home")
 
-    return render(request, 'login.html')
+    return render(request, 'login2.html')
 
 
 
@@ -40,25 +40,26 @@ def login_user(request):
 
 
 def register(request):
+    
+   
+    
     if request.method == "POST":
         form = registration_form(request.POST)
+
         if form.is_valid():
 
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
             email = form.cleaned_data["email"]
 
-            user = User.objects.create_user(username=username, password=password)
+            user = User.objects.create_user(username=username, password=password , email=email)
             login(user,request)
             token = uuid.uuid4[:8]
-            referal_code = form.cleaned_data["referal_code"]
-            obj = staff.objects.filter(referal_code=referal_code).first()
-            prof_obj = Customer.objects.create(name = username,email=email , email_token = str(token))
+            
+            Customer.objects.create(name = username,email=email , email_token = str(token))
             
             verify_email(email,token)
-            if obj:
-                obj.people_joined.add(request.user)
-                obj.save()
+            
 
             # Create a new User object and set the username and password
             
@@ -70,8 +71,10 @@ def register(request):
             return HttpResponse("Registration successful")
     else:
         form = registration_form()
-    
-    return render(request, "register.html", {"form": form})
+    context = {
+        "form":form
+    }
+    # return render(request, "register.html", {"form": form})
 
 
 def verify(request,pk):
@@ -90,5 +93,11 @@ def purchase_course(request , pk):
     cust = Customer.objects.get(name  = user)
     if request.method == "POST" and cust.email_is_verified :
          client = razorpay.Client(auth=(settings.razor_pay_key_id , settings.key_secret)) 
-         request.POST.get("referal_code")
-         cust.Product_purchased.add(obj)
+         code = request.POST.get("referal_code")
+         if staff.objects.filter(referal_code = code).exists:
+             payment = client.order.create({"amount":obj.price*90 , "currency":"INR" , "payment_capture":1})
+         else:
+             payment = client.order.create({"amount":obj.price*100 , "currency":"INR" , "payment_capture":1})
+                 
+
+        #  cust.Product_purchased.add(obj)
